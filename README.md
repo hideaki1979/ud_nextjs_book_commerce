@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 【Udemy講座】Book Commerce App
 
-## Getting Started
+## 概要
+Book Commerce Appは電子書籍販売プラットフォームです。
+ユーザーは電子書籍を閲覧・購入できます。
 
-First, run the development server:
+※本アプリはUdemy講座で作成したアプリです。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 技術スタック
+
+| 技術 | ロゴ |
+| ---- | ---- |
+| Next.js | <img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png" height="50px"> |
+| React | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" height="50px"> |
+| TypeScript | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" height="50px"> |
+| NextAuth | <img src="https://next-auth.js.org/img/logo/logo-sm.png" height="50px"> |
+| Prisma | <img src="https://avatars.githubusercontent.com/u/17219288?s=200&v=4" height="50px"> |
+| Stripe | <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" height="50px"> |
+| Tailwind CSS | <img src="https://avatars.githubusercontent.com/u/67109815?s=200&v=4" height="50px"> |
+| MicroCMS | <img src="https://avatars.githubusercontent.com/u/59202820?s=200&v=4" height="50px"> |
+| Vercel | <img src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" height="50px"> |
+
+## 環境構築手順
+1. リポジトリをクローンする
+```
+git clone https://github.com/yourusername/book-commerce-app.git
+cd book-commerce-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 依存関係をインストールする
+```
+npm install
+# またはnstall
+yarn install
+```
+3. 環境変数を設定する
+`.env.local`ファイルを作成し、必要な環境変数を設定します。
+```
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+MICROCMS_API_KEY=your_microcms_api_keyase_anon_key
+MICROCMS_SERVICE_DOMAIN=your_microcms_domain
+STRIPE_SECRET_KEY=your_stripe_secret_keyT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. データベースをセットアップする
+```
+npx prisma migrate dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5. 開発サーバーを起動する
+```
+npm run dev
+# またはn dev
+yarn dev
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+6. ブラウザで [http://localhost:3000](http://localhost:3000) を開く
