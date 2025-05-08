@@ -21,7 +21,6 @@ const PurchaseSuccess = () => {
                     }
                 )
                 const data = await result.json()
-                console.log(data)
                 setBookUrl(data.bookId)
             }
         }
