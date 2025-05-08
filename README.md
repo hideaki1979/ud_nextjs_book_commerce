@@ -34,7 +34,7 @@ npm install
 yarn install
 ```
 3. 環境変数を設定する
-`.env.local`ファイルを作成し、必要な環境変数を設定します。
+.env.local`ファイルを作成し、必要な環境変数を設定します。
 ```
 NEXTAUTH_SECRET=your_nextauth_secret
 NEXTAUTH_URL=http://localhost:3000

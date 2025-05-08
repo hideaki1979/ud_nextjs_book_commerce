@@ -27,7 +27,10 @@ export const getDetailBook = async (contentId: string) => {
         endpoint: "bookcommerce",
         contentId,
         customRequestInit: {
-            cache: "no-store"
+            // cache: "no-store"   // SSR
+            next: {
+                revalidate: 3600    // ISR
+            }
         }
     })
     return detailBook
