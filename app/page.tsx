@@ -6,7 +6,6 @@ import { getAllBooks } from "./lib/microcms/client";
 import { BookType, PurchaseType } from "./types/types";
 import { nextAuthOptions } from "./lib/next-auth/options";
 
-
 export default async function Home() {
   // 疑似データ→本番データ
   const { contents } = await getAllBooks()
@@ -37,6 +36,7 @@ export default async function Home() {
           key={book.id}
           book={book}
           isPurchase={purchaseBookIds.includes(book.id)}
+          user={user}
         />
       ))}
     </main>
