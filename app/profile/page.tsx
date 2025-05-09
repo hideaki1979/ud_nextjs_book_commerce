@@ -6,6 +6,18 @@ import { BookType, PurchaseType } from '../types/types'
 import { getDetailBook } from '../lib/microcms/client'
 import PurchasesDetailBook from '../components/PurchasesDetailBook'
 
+/**
+ * ユーザープロフィールページを表示する非同期関数
+ *
+ * @description
+ *   現在のユーザーのセッション情報を取得し、ユーザーが購入した本の詳細情報を表示します。
+ *   購入した本の詳細は、APIから取得された購入情報に基づいて取得されます。
+ *   ユーザーのプロフィール画像と名前も表示されます。
+ *
+ * @returns {JSX.Element}
+ *   ユーザープロフィールページコンポーネント
+ */
+
 export default async function UserProfilePage() {
     const session = await getServerSession(nextAuthOptions)
     const user = session?.user

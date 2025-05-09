@@ -7,6 +7,17 @@ type PurchasesDetailBookProps = {
     purchasesDetailBook: BookType;
 }
 
+/**
+ * PurchasesDetailBook
+ *
+ * @param {Object} props
+ * @param {BookType} props.purchasesDetailBook - 1つのBookType
+ *
+ * @returns {JSX.Element} 1つのBookTypeを表示するComponent
+ *
+ * @example
+ * <PurchasesDetailBook purchasesDetailBook={{ id: "hoge", title: "hoge", price: 100, thumbnail: { url: "https://example.com/image.jpg" } }} />
+ */
 const PurchasesDetailBook = ({ purchasesDetailBook }: PurchasesDetailBookProps) => {
     return (
         <div className='w-full md:w-1/2 lg:1/3 max-w-sm'>

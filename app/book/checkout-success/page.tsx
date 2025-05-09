@@ -4,6 +4,13 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
+/**
+ * 購入完了画面
+ *
+ * Stripe Checkout からredirectされてきた後の画面。
+ * 購入した商品の詳細をメールで送信する。
+ * 画面には、購入した商品の詳細ページのリンクを表示する。
+ */
 const PurchaseSuccess = () => {
     const [bookUrl, setBookUrl] = useState('')
     const searchParams = useSearchParams()

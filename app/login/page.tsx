@@ -4,6 +4,16 @@ import { BuiltInProviderType } from "next-auth/providers/index"
 import { ClientSafeProvider, getProviders, LiteralUnion, signIn } from "next-auth/react"
 import { useEffect, useState } from "react"
 
+/**
+ * ログインコンポーネント。
+ * 
+ * このコンポーネントは、ユーザーが利用可能な認証プロバイダーの一覧を取得し、
+ * 各プロバイダーにサインインするためのボタンを表示します。
+ * 
+ * プロバイダーがセットアップされると、利用可能なプロバイダーのボタンが表示され、
+ * ボタンをクリックすることでサインインプロセスが開始されます。
+ */
+
 function Login() {
 
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null)

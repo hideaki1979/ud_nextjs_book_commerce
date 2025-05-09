@@ -22,6 +22,12 @@ export const getAllBooks = async () => {
     return allBooks
 }
 
+/**
+ * 指定されたIDの本の情報を取得
+ *
+ * @param {string} contentId - 取得したい本のID
+ * @returns {Promise<BookType>} 本の情報
+ */
 export const getDetailBook = async (contentId: string) => {
     const detailBook = await client.getListDetail<BookType>({
         endpoint: "bookcommerce",

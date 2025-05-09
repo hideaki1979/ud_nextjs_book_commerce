@@ -2,6 +2,10 @@
 
 import { signOut } from "next-auth/react"
 
+/**
+ * A button component that signs out the user using Next-Auth's {@link signOut} function.
+ * When clicked, the user will be redirected to the login page.
+ */
 const LogoutButton = () => {
     return (
         <button

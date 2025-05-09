@@ -2,6 +2,12 @@ import { stripe } from "@/app/lib/stripe";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * @description Stripe Checkout 画面に遷移するための API
+ * @param {NextRequest} request
+ * @returns {NextResponse} Checkout Session の URL
+ * @throws {Error} 購入処理でエラーが発生した場合
+ */
 export async function POST(request: NextRequest) {
     try {
         // リクエストからタイトルと値段を取得する

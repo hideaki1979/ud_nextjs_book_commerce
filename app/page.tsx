@@ -6,6 +6,13 @@ import { getAllBooks } from "./lib/microcms/client";
 import { BookType, PurchaseType } from "./types/types";
 import { nextAuthOptions } from "./lib/next-auth/options";
 
+/**
+ * Homeコンポーネントは、MicroCMSに保存された本の情報を取得し、
+ * 現在のユーザーが購入した本かどうかを判定してBookコンポーネントに渡します。
+ * 
+ * @returns {JSX.Element}
+ *   BookCommerceのトップページコンポーネント
+ */
 export default async function Home() {
   // 疑似データ→本番データ
   const { contents } = await getAllBooks()

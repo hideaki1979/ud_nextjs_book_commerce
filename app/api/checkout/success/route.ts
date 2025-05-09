@@ -2,6 +2,13 @@ import prisma from "@/app/lib/prisma";
 import { stripe } from "@/app/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Stripe Checkout Sessionの purchasae status が 
+ * succeeded となった場合に実行される API
+ * 
+ * @param {NextRequest} request - NextRequest
+ * @returns {NextResponse} - Stripe Checkout Sessionの情報を返す
+ */
 export async function POST(request: NextRequest) {
     const { sessionId } = await request.json()
     try {

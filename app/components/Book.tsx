@@ -13,6 +13,21 @@ type BookProps = {
     user: User | undefined;
 }
 
+/**
+ * Bookコンポーネントは、書籍の情報を表示し、購入を行うためのUIを提供します。
+ * 
+ * @param {BookProps} props - コンポーネントのプロパティ
+ * @param {Object} props.book - 書籍の詳細情報を含むオブジェクト
+ * @param {boolean} props.isPurchase - 書籍が購入済みかどうかを示すフラグ
+ * @param {User | undefined} props.user - 現在のユーザー情報
+ * 
+ * @returns 書籍のサムネイル、タイトル、コンテンツ、価格を表示し、購入ボタンを提供するUIを返します。
+ * 購入ボタンをクリックすると、購入確認のモーダルが表示され、購入を進めることができます。
+ * 
+ * モーダルでは、「購入する」ボタンをクリックすることで、ログインしている場合はStripeでの決済が開始されます。
+ * ログインしていない場合は、ログインページにリダイレクトされます。
+ */
+
 const Book = ({ book, isPurchase, user }: BookProps) => {
 
     const [isShowModal, setIsShowModal] = useState(false)

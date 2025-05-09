@@ -3,6 +3,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { nextAuthOptions } from "../lib/next-auth/options"
 
+/**
+ * ヘッダーコンポーネント
+ * 
+ * @description
+ *   Next-Authの認証状態に応じて、ログイン/ログアウトボタンを表示します。
+ *   また、ユーザーのプロフィール画像を表示します。
+ * 
+ * @return {JSX.Element}
+ *   ヘッダー要素
+ */
 const Header = async () => {
 
     const session = await getServerSession(nextAuthOptions)
