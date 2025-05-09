@@ -44,7 +44,7 @@ export default async function UserProfilePage() {
                 </div>
             </div>
             <span className='font-medium text-lg block my-4'>購入した記事</span>
-            <div className='flex items-center gap-6'>
+            <div className='flex flex-wrap items-start gap-6 justify-center'>
                 {purchasesDetailBooks.map((purchasesDetailBook) => (
                     <PurchasesDetailBook
                         key={purchasesDetailBook.id}

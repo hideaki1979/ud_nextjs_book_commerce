@@ -5,6 +5,7 @@ import { BookType } from "../types/types"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { User } from "next-auth";
+import DOMPurify from "isomorphic-dompurify";
 
 type BookProps = {
     book: BookType;
@@ -82,22 +83,28 @@ const Book = ({ book, isPurchase, user }: BookProps) => {
                 }
             `}</style>
 
-            <div className="flex flex-col items-center m-4">
+            <div className="flex justify-center p-4 w-full md:w-1/2 lg:w-1/3">
                 <a
                     onClick={handleShowModal}
-                    className="cursor-pointer shadow-2xl duration-300 hover:translate-y-2 hover:shadow-none"
+                    className="cursor-pointer shadow-gray-300 shadow-lg duration-300 hover:translate-y-2 hover:shadow-none w-full max-w-sm"
                 >
-                    <Image
-                        priority
-                        src={book.thumbnail.url}
-                        alt={book.title}
-                        width={450}
-                        height={350}
-                        className="rounded-t-md"
-                    />
+                    <div className="flex justify-center">
+                        <Image
+                            priority
+                            src={book.thumbnail.url}
+                            alt={book.title}
+                            width={450}
+                            height={350}
+                            className="rounded-t-md h-52 object-cover"
+                        />
+                    </div>
                     <div className="p-4 bg-slate-100 rounded-b-md text-black">
-                        <h2 className="text-lg font-semibold">{book.title}</h2>
-                        <p className="mt-2 text-lg text-slate-600">{book.content}</p>
+                        <h2 className="text-lg font-semibold truncate">{book.title}</h2>
+                        <div
+                            className="mt-2 text-lg text-slate-600 line-clamp-3"
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(book.content) }}
+                        >
+                        </div>
                         <p className="mt-2 text-md text-slate-700">値段：{book.price}円</p>
                     </div>
                 </a>
@@ -105,7 +112,7 @@ const Book = ({ book, isPurchase, user }: BookProps) => {
                 {isShowModal && (
                     <div
                         onClick={handleCloseModal}  // 背景クリック時にモーダルを閉じる
-                        className="fixed inset-0 bg-slate-700 opacity-90  flex items-center justify-center z-50"
+                        className="fixed inset-0 bg-slate-700 opacity-90 flex items-center justify-center z-50"
                     >
                         <div
                             onClick={(e) => e.stopPropagation()}    // モーダル内部のクリックは伝播させない 
