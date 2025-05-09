@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
       "avatars.githubusercontent.com",
       "source.unsplash.com",
       "images.microcms-assets.io",
-      "lh3.googleusercontent.com"
+      "lh3.googleusercontent.com",
+      "platform-lookaside.fbsbx.com"
     ]
   }
 };
