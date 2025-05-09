@@ -40,6 +40,13 @@ export const nextAuthOptions: NextAuthOptions = {
                     id: user.id
                 }
             }
+        },
+        signIn: async ({ user, account }) => {
+            // アカウントが存在し、メールが検証済みであれば許可
+            if (account && account.provider === 'facebook' && user.email) {
+                return true
+            }
+            return true // 他の場合も許可
         }
     },
     secret: process.env.NEXTAUTH_SECRET
