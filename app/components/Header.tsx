@@ -1,8 +1,6 @@
-import { getServerSession } from "next-auth"
 import Image from "next/image"
 import Link from "next/link"
-import { nextAuthOptions } from "../lib/next-auth/options"
-
+import { auth } from "../lib/auth/auth"
 /**
  * ヘッダーコンポーネント
  * 
@@ -15,7 +13,7 @@ import { nextAuthOptions } from "../lib/next-auth/options"
  */
 const Header = async () => {
 
-    const session = await getServerSession(nextAuthOptions)
+    const session = await auth()
     const user = session?.user
     // console.log(user)
 

@@ -1,8 +1,7 @@
 "use client"
 
-import { BuiltInProviderType } from "next-auth/providers/index"
-import { ClientSafeProvider, getProviders, LiteralUnion, signIn } from "next-auth/react"
-import { useEffect, useState } from "react"
+import { signIn } from "next-auth/react"
+import { useQuery } from "@tanstack/react-query"
 
 /**
  * ログインコンポーネント。
@@ -14,22 +13,25 @@ import { useEffect, useState } from "react"
  * ボタンをクリックすることでサインインプロセスが開始されます。
  */
 
+interface ProviderType {
+    id: string;
+    name: string;
+    type: string;
+}
+
 function Login() {
 
-    const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null)
-
-    useEffect(() => {
-        const setUpProviders = async () => {
-            const res = await getProviders()
-            setProviders(res)
+    // React Queryを使用してプロバイダー情報を取得
+    const { data: providers } = useQuery({
+        queryKey: ['auth-providers'],
+        queryFn: async () => {
+            const res = await fetch('/api/auth/providers')
+            if (!res.ok) {
+                throw new Error('プロバイダー情報の取得に失敗しました。')
+            }
+            return res.json()
         }
-        setUpProviders()
-    }, [])
-
-    // const providers = await getProviders().then((res) => {
-    //     // console.log(res)
-    //     return res
-    // })
+    })
 
     return (
         <div className="flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
@@ -41,7 +43,7 @@ function Login() {
                 </div>
                 <div className="">
                     {providers &&
-                        Object.values(providers).map((provider) => {
+                        Object.values(providers as Record<string, ProviderType>).map((provider) => {
                             return (
                                 <div key={provider.id} className="text-center">
                                     <button

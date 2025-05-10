@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { Noto_Sans_JP } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header";
-import { NextAuthProvider } from "./lib/next-auth/provider";
 import { Suspense } from "react";
 import LoadingSpinner from "./components/Loading";
+import { AuthProvider } from "./lib/auth/provider";
+import Providers from "./providers";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -14,16 +15,6 @@ const notoSansJP = Noto_Sans_JP({
   // 必要に応じてpreloadを追加（日本語の場合は多くの文字があるため）
   preload: false
 })
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "Book Commerce",
@@ -50,12 +41,15 @@ export default function RootLayout({
       <body
         className={`${notoSansJP.variable} antialiased`}
       >
-        <NextAuthProvider>
-          <Header />
-          <Suspense fallback={<LoadingSpinner />}>
-            {children}
-          </Suspense>
-        </NextAuthProvider>
+        <Providers>
+
+          <AuthProvider>
+            <Header />
+            <Suspense fallback={<LoadingSpinner />}>
+              {children}
+            </Suspense>
+          </AuthProvider>
+        </Providers>
       </body>
     </html>
   );

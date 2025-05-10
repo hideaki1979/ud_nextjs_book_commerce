@@ -1,7 +1,6 @@
-import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import React from 'react'
-import { nextAuthOptions } from '../lib/next-auth/options'
+import { auth } from '@/app/lib/auth/auth'
 import { BookType, PurchaseType } from '../types/types'
 import { getDetailBook } from '../lib/microcms/client'
 import PurchasesDetailBook from '../components/PurchasesDetailBook'
@@ -19,7 +18,7 @@ import PurchasesDetailBook from '../components/PurchasesDetailBook'
  */
 
 export default async function UserProfilePage() {
-    const session = await getServerSession(nextAuthOptions)
+    const session = await auth()
     const user = session?.user
     // console.log(session)
     let purchasesDetailBooks: BookType[] = []

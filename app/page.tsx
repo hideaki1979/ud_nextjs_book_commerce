@@ -1,10 +1,9 @@
 // "use client"
 
-import { getServerSession } from "next-auth";
 import Book from "./components/Book";
 import { getAllBooks } from "./lib/microcms/client";
 import { BookType, PurchaseType } from "./types/types";
-import { nextAuthOptions } from "./lib/next-auth/options";
+import { auth } from "./lib/auth/auth";
 
 /**
  * Homeコンポーネントは、MicroCMSに保存された本の情報を取得し、
@@ -16,7 +15,7 @@ import { nextAuthOptions } from "./lib/next-auth/options";
 export default async function Home() {
   // 疑似データ→本番データ
   const { contents } = await getAllBooks()
-  const session = await getServerSession(nextAuthOptions)
+  const session = await auth()
   const user = session?.user
 
   let purchaseBookIds: string[] = [];
