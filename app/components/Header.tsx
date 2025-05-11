@@ -18,7 +18,7 @@ const Header = async () => {
     // console.log(user)
 
     return (
-        <header className="bg-slate-700 text-gray-100 shadow-lg">
+        <header className="bg-slate-700 text-gray-100 shadow-lg fixed top-0 left-0 right-0 z-30">
             <nav className="flex items-center justify-between p-4">
                 <Link href={"/"} className="text-xl font-bold">
                     Book Commerce

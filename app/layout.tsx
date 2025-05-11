@@ -45,9 +45,11 @@ export default function RootLayout({
 
           <AuthProvider>
             <Header />
-            <Suspense fallback={<LoadingSpinner />}>
-              {children}
-            </Suspense>
+            <div className="pt-20">
+              <Suspense fallback={<LoadingSpinner />}>
+                {children}
+              </Suspense>
+            </div>
           </AuthProvider>
         </Providers>
       </body>

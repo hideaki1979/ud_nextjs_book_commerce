@@ -4,6 +4,7 @@ import { auth } from '@/app/lib/auth/auth'
 import { BookType, PurchaseType } from '../types/types'
 import { getDetailBook } from '../lib/microcms/client'
 import PurchasesDetailBook from '../components/PurchasesDetailBook'
+import { redirect } from 'next/navigation'
 
 /**
  * ユーザープロフィールページを表示する非同期関数
@@ -36,6 +37,8 @@ export default async function UserProfilePage() {
             })
         )
 
+    } else {
+        redirect('/')
     }
 
     return (
