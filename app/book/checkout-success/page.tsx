@@ -1,8 +1,9 @@
 "use client"
 
+import LoadingSpinner from "@/app/components/Loading"
+import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
 
 /**
  * 購入完了画面
@@ -12,27 +13,29 @@ import { useEffect, useState } from "react"
  * 画面には、購入した商品の詳細ページのリンクを表示する。
  */
 const PurchaseSuccess = () => {
-    const [bookUrl, setBookUrl] = useState('')
     const searchParams = useSearchParams()
     const sessionId = searchParams.get('session_id')
 
-    useEffect(() => {
-        const fetchData = async () => {
-            if (sessionId) {
-                const result = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/checkout/success`,
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ sessionId })
-                    }
-                )
-                const data = await result.json()
-                setBookUrl(data.bookId)
-            }
-        }
-        fetchData()
-    }, [sessionId])
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['checkoutSuccess', sessionId],
+        queryFn: async () => {
+            if (!sessionId) return null
+            const result = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/checkout/success`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sessionId })
+                }
+            )
+            return await result.json()
+        },
+        enabled: !!sessionId    // sessionIdが存在する場合のみクエリを実行
+    })
+
+    if (isLoading) return <LoadingSpinner />
+    if (isError) return <div>エラーが発生しました。</div>
+    if (!data) return null
 
     return (
         <div className="flex items-center justify-center mt-20">
@@ -45,7 +48,7 @@ const PurchaseSuccess = () => {
                 </p>
                 <div className="mt-8 text-center underline">
                     <Link
-                        href={`/book/${bookUrl}`}
+                        href={`/book/${data.bookId}`}
                         className="text-indigo-400 hover:text-indigo-200 transition duration-500"
                     >
                         購入した記事を読む

@@ -1,6 +1,6 @@
 "use client"
 
-import { signOut } from "next-auth/react"
+import { signOut } from "../lib/auth/auth"
 
 /**
  * A button component that signs out the user using Next-Auth's {@link signOut} function.
@@ -9,7 +9,7 @@ import { signOut } from "next-auth/react"
 const LogoutButton = () => {
     return (
         <button
-            onClick={() => signOut({ callbackUrl: '/auth/signin', redirect: true })}
+            onClick={() => signOut({ redirect: true })}
             className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
         >
             ログアウト

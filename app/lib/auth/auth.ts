@@ -51,6 +51,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
                 session.user.id = token.id as string
             }
             return session
+        },
+        redirect({ baseUrl }) {
+            return baseUrl
         }
     },
     pages: {

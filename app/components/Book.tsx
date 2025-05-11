@@ -57,7 +57,6 @@ const Book = ({ book, isPurchase, user }: BookProps) => {
                     userId: user?.id
                 })
             })
-            console.log("レスポンスURL：", response)
             const resData = await response.json()
 
             if (resData) {
