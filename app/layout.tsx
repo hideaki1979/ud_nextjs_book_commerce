@@ -42,7 +42,6 @@ export default function RootLayout({
         className={`${notoSansJP.variable} antialiased`}
       >
         <Providers>
-
           <AuthProvider>
             <Header />
             <div className="pt-20">

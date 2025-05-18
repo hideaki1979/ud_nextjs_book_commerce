@@ -9,25 +9,7 @@ import NextAuth from "next-auth"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
     debug: process.env.NODE_ENV === 'development',
-    providers: [
-        GitHub({
-            clientId: process.env.GITHUB_ID!,
-            clientSecret: process.env.GITHUB_SECRET!
-        }),
-        Google({
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-        }),
-        Facebook({
-            clientId: process.env.FACEBOOK_CLIENT_ID!,
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET!
-        }),
-        Twitter({
-            clientId: process.env.TWITTER_ID!,
-            clientSecret: process.env.TWITTER_SECRET!
-        })
-
-    ],
+    providers: [GitHub, Google, Facebook, Twitter],
     adapter: PrismaAdapter(prisma),
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
