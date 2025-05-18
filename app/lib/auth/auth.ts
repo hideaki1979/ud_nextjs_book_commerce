@@ -9,7 +9,9 @@ import NextAuth from "next-auth"
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
     debug: process.env.NODE_ENV === 'development',
-    providers: [GitHub, Google, Facebook, Twitter],
+    providers: [GitHub, Google,
+        Facebook({ allowDangerousEmailAccountLinking: true }),
+        Twitter],
     adapter: PrismaAdapter(prisma),
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
